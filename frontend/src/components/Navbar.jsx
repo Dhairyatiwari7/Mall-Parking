@@ -28,9 +28,9 @@ const Navbar = () => {
       <nav className="bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-200/50 fixed top-0 w-full z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Logo Section */}
+           
             <div className="flex items-center space-x-3">
-              {/* Parking Logo SVG */}
+              
               <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
@@ -44,7 +44,6 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Centered Navigation */}
             <div className="hidden lg:flex items-center justify-center flex-1 mx-8">
               <div className="flex items-center space-x-2 bg-gray-50/80 rounded-2xl p-2 backdrop-blur-sm border border-gray-200/50">
                 <NavItem 
@@ -62,10 +61,14 @@ const Navbar = () => {
                   label="Vehicle Exit" 
                   icon="🚪"
                 />
+                <NavItem 
+                  to="/revenue" 
+                  label="Revenue" 
+                  icon="💰"
+                />
               </div>
             </div>
 
-            {/* Right Section - Alert Icon and User Profile */}
             <div className="hidden lg:flex items-center space-x-4">
               {/* Alert/Notification Icon */}
               <button 
@@ -90,7 +93,6 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -114,7 +116,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200/50 shadow-lg">
             <div className="px-4 py-6 space-y-3">
@@ -137,13 +138,18 @@ const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)} 
               />
               <NavItem 
+                to="/revenue" 
+                label="Revenue" 
+                icon="💰"
+                onClick={() => setMobileMenuOpen(false)} 
+              />
+              <NavItem 
                 to="/alert" 
                 label="Alert Notifications" 
                 icon={<FaBell />}
                 onClick={() => setMobileMenuOpen(false)} 
               />
               
-              {/* Mobile User Section */}
               <div className="pt-4 border-t border-gray-200">
                 <div className="flex items-center space-x-3 px-6 py-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
@@ -160,7 +166,6 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* Spacer to prevent content from hiding behind fixed navbar */}
       <div className="h-20"></div>
     </>
   );

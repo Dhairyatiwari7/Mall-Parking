@@ -9,6 +9,7 @@ import VehicleExit from './pages/VehicleExit';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Alert from './pages/Alert'
+import Revenue from './pages/Revenue';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
               <Route path='/vehicle-entry' element={<VehicleEntry/>} />
               <Route path='/vehicle-exit' element={<VehicleExit/>} />
               <Route path='/alert' element={<Alert/>} />
+              <Route path='/revenue' element={<Revenue/>} />
               <Route path="*" element={<Dashboard />} />
             </Routes>
           </main>
