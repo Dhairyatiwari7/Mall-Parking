@@ -74,10 +74,10 @@ const VehicleEntry = () => {
   const availableSlots = getAvailableSlots();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-6 bg-gradient-to-br from-blue-100 via-white to-indigo-100">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-500 to-indigo-700 p-6">
+          <div className="bg-gradient-to-r from-blue-400 to-indigo-500 p-6">
             <h2 className="text-xl font-semibold text-white text-center">Create New Vehicle Entry</h2>
           </div>
 

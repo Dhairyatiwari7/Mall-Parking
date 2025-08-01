@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { FaBell } from 'react-icons/fa';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const Navigate=useNavigate()
+  const navigate = useNavigate();
+
   const NavItem = ({ to, label, onClick, icon }) => (
     <NavLink
       to={to}
@@ -34,8 +36,8 @@ const Navbar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                 </svg>
               </div>
-              <div onClick={()=>Navigate('/')} className='cursor-pointer'>
-                <h1   className=" text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <div onClick={() => navigate('/')} className='cursor-pointer'>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   Mall Parking
                 </h1>
                 <p className="text-xs text-gray-500 font-medium">Management System</p>
@@ -63,8 +65,20 @@ const Navbar = () => {
               </div>
             </div>
 
+            {/* Right Section - Alert Icon and User Profile */}
             <div className="hidden lg:flex items-center space-x-4">
+              {/* Alert/Notification Icon */}
+              <button 
+                onClick={() => navigate('/alert')}
+                className="relative p-3 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300 group"
+                title="Alert Notifications"
+              >
+                <FaBell className="w-6 h-6" />
+                {/* Optional: Add notification badge */}
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+              </button>
 
+              {/* User Profile */}
               <div className="flex items-center space-x-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl px-4 py-2 border border-gray-200/50">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
                   <span className="text-white text-sm font-bold">A</span>
@@ -76,6 +90,7 @@ const Navbar = () => {
               </div>
             </div>
 
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -99,6 +114,7 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200/50 shadow-lg">
             <div className="px-4 py-6 space-y-3">
@@ -120,7 +136,14 @@ const Navbar = () => {
                 icon="🚪"
                 onClick={() => setMobileMenuOpen(false)} 
               />
+              <NavItem 
+                to="/alert" 
+                label="Alert Notifications" 
+                icon={<FaBell />}
+                onClick={() => setMobileMenuOpen(false)} 
+              />
               
+              {/* Mobile User Section */}
               <div className="pt-4 border-t border-gray-200">
                 <div className="flex items-center space-x-3 px-6 py-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
@@ -137,6 +160,7 @@ const Navbar = () => {
         )}
       </nav>
 
+      {/* Spacer to prevent content from hiding behind fixed navbar */}
       <div className="h-20"></div>
     </>
   );

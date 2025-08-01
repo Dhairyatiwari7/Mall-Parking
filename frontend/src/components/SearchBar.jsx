@@ -33,7 +33,7 @@ const SearchBar = ({ searchValue, onSearchChange, onSearch, onClear, loading, pl
         <button
           type="submit"
           disabled={loading}
-          className="absolute inset-y-0 right-0 px-6 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-r-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 font-semibold disabled:opacity-50"
+          className="absolute inset-y-0 right-0 px-6 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-r-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 font-semibold disabled:opacity-50"
         >
           {loading ? 'Searching...' : 'Search'}
         </button>

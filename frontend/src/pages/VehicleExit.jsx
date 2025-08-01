@@ -83,7 +83,21 @@ const VehicleExit = () => {
       });
       
       setBillingDetails(response.data);
-      toast.success(`${response.data.message}`);
+      
+      toast.success(response.data.message);
+      if (response.data.late_alert && response.data.late_alert.is_late) {
+        toast.warning(
+          `🚨 LATE ALERT: ${response.data.late_alert.message}`,
+          {
+            position: "top-center",
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          }
+        );
+      }
       
       if (fetchSlots) fetchSlots();
       await fetchActiveVehicles();
@@ -119,24 +133,22 @@ const VehicleExit = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-rose-50 py-8">
       <div className="max-w-7xl mx-auto px-4 space-y-8">
-        {/* Modern Header */}
-        <div className="text-center bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+        {/* Header */}
+        <div className="text-center bg-white rounded-2xl shadow-lg p-8 border border-gray-100 bg-gradient-to-br from-blue-400 via-white to-blue-300">
           <div className="bg-red-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-            <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
             </svg>
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-2">
             Vehicle Exit
           </h1>
           <p className="text-gray-600 text-lg">Select a parked vehicle or search by number plate</p>
         </div>
-
-        {/* Currently Parked Vehicles */}
         <FormCard 
           title="Currently Parked Vehicles" 
           subtitle={`${activeVehicles.length} vehicles currently in parking`}
-          headerGradient="from-red-500 to-rose-600"
+          headerGradient="from-blue-400 to-blue-500"
           icon={
             <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
@@ -190,7 +202,6 @@ const VehicleExit = () => {
           )}
         </FormCard>
 
-        {/* Manual Search Section */}
         <FormCard 
           title="Manual Search" 
           subtitle="Search by entering vehicle number plate"
@@ -211,12 +222,11 @@ const VehicleExit = () => {
           />
         </FormCard>
 
-        {/* Session Details */}
         {sessionDetails && (
           <FormCard 
             title="Selected Vehicle Details" 
             subtitle="Review parking information before processing exit"
-            headerGradient="from-purple-500 to-purple-600"
+            headerGradient="from-blue-500 to-blue-600"
             icon={
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/>
@@ -250,7 +260,7 @@ const VehicleExit = () => {
               className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 ${
                 loading
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 transform hover:scale-[1.02] shadow-lg hover:shadow-xl'
+                  : 'bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transform hover:scale-[1.02] shadow-lg hover:shadow-xl'
               }`}
             >
               {loading ? (
@@ -269,8 +279,6 @@ const VehicleExit = () => {
             </button>
           </FormCard>
         )}
-
-        {/* Billing Receipt */}
         {billingDetails && (
           <BillingReceipt 
             billingDetails={billingDetails}
